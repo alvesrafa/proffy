@@ -1,9 +1,13 @@
-import React from 'react';
+import React from "react";
+import Landing from "./pages/Landing";
+import Global from "./assets/styles/GlobalStyles";
+import Routes from "./routes";
 function App() {
   return (
-    <div className="App">
-      <h1>NWL 2</h1>
-    </div>
+    <>
+      <Global />
+      <Routes />
+    </>
   );
 }
 

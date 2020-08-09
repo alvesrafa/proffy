@@ -52,7 +52,7 @@ export const Container = styled.article`
       font-size: 1.6rem;
       display: block;
     }
-    > button {
+    > a {
       width: 20rem;
       height: 5.6rem;
       background: var(--color-secundary);

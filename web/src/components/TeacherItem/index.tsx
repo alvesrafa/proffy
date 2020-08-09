@@ -2,37 +2,47 @@ import React from "react";
 
 import { Container } from "./styles";
 import wppIcon from "../../assets/images/icons/whatsapp.svg";
-
-const TeacherItem: React.FC = () => {
+import { Interface } from "readline";
+import api from "../../services/api";
+export interface Teacher {
+  avatar: string;
+  bio: string;
+  cost: number;
+  id: number;
+  name: string;
+  subject: string;
+  whatsapp: string;
+}
+interface TeacherProps {
+  teacher: Teacher;
+}
+const TeacherItem: React.FC<TeacherProps> = ({ teacher }) => {
+  const createNewConnection = async () => {
+    await api.post("connections", { user_id: teacher.id });
+  };
   return (
     <Container>
       <header>
-        <img
-          src={'https://avatars0.githubusercontent.com/u/32360540?s=400&u=996cf0fbc6f57670dd8d76863adced6be6ba223e&v=4'}
-          alt="Rafael Alves"
-        />
+        <img src={teacher.avatar} alt={teacher.name} />
         <div>
-          <strong>Rafael Alves</strong>
-          <span>Quimíca</span>
+          <strong>{teacher.name}</strong>
+          <span>{teacher.subject}</span>
         </div>
       </header>
-      <p>
-        Entusiasta das melhores tecnologias de química avançada.
-        <br />
-        <br />
-        Apaixonado por explodir coisas em laboratório e por mudar a vida das
-        pessoas através de experiências. Mais de 200.000 pessoas já passaram por
-        uma das minhas explosões.
-      </p>
+      <p>{teacher.bio}</p>
 
       <footer>
         <p>
-          Preço/hora <strong>R$20,00</strong>
+          Preço/hora <strong>R${teacher.cost}</strong>
         </p>
-        <button type="button">
+        <a
+          onClick={createNewConnection}
+          target="_blank"
+          href={`https://wa.me/${teacher.whatsapp}`}
+        >
           <img src={wppIcon} alt="WhatsApp" />
           Entrar em contato
-        </button>
+        </a>
       </footer>
     </Container>
   );

@@ -48,7 +48,7 @@ export default createGlobalStyle`
     color: var(--color-text-base);
   }
   .container {
-    width: 90%;
+    width: 90vw;
     max-width: 700px;
   }
   @media (min-width: 700px) {
